@@ -1,0 +1,214 @@
+:root {
+    --primary-color: #B76E79; /* Rose Gold */
+    --secondary-color: #D8A7B1; /* Dusty Mauve */
+    --background-color: #FFF8F0; /* Ivory */
+    --text-color: #333333; /* Charcoal */
+    --accent-color: #FADADD; /* Blush Pink */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+}
+
+/* Main Chat Page Container */
+.chat-page-container {
+    width: 100%;
+    max-width: 800px;
+    height: 95vh;
+    max-height: 900px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 2px solid var(--primary-color);
+}
+
+/* Chat Header */
+.chat-header {
+    background: var(--primary-color);
+    color: white;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.chat-header h1 {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    font-size: 2rem;
+}
+
+.chat-header p {
+    margin-top: 0.5rem;
+    opacity: 0.9;
+}
+
+.back-button {
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    transform: translateY(-50%);
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: transform 0.2s ease;
+}
+
+.back-button:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Chat Box (Message Area) */
+.chat-box {
+    flex-grow: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    background-color: var(--background-color);
+}
+
+.chat-messages {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.chat-messages li {
+    padding: 0.75rem 1.25rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.sender-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--accent-color);
+    display: block;
+}
+
+.chat-messages li.sent {
+    align-self: flex-end;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 18px 18px 5px 18px;
+    max-width: 70%;
+}
+
+.chat-messages li.sent .sender-name {
+    color: #f0e4e6; /* Lighter color for the sender name on sent messages */
+    text-align: right;
+}
+
+.chat-messages li.received {
+    background-color: #E5E5EA;
+    color: var(--text-color);
+    border-radius: 18px 18px 18px 5px;
+    align-self: flex-start;
+    max-width: 70%;
+}
+
+/* Chat Footer (Input Area) */
+.chat-footer {
+    padding: 1rem 1.5rem;
+    background: #fff;
+    border-top: 1px solid #eee;
+}
+
+.chat-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#chat-input {
+    flex-grow: 1;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.2s ease;
+}
+
+#chat-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.chat-form button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-form button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .chat-page-container {
+        height: 100vh;
+        max-height: none;
+        border-radius: 0;
+        border: none;
+    }
+    .chat-header {
+        padding: 1rem;
+        position: relative;
+        z-index: 1000;
+    }
+    .chat-header h1 {
+        font-size: 1.5rem;
+        margin-left: 3rem; /* Add margin to prevent overlap with back button */
+    }
+    .back-button {
+        left: 0.5rem;
+        font-size: 1rem;
+        z-index: 1001;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.5rem;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .chat-box {
+        padding: 1rem 0.5rem;
+    }
+    .chat-form {
+        padding: 1rem 0.5rem;
+    }
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رواية الحب التفاعلية - هدية منار</title>
+    <link rel="stylesheet" href="visual-novel.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="floating-heart"></div>
+        <div class="floating-heart"></div>
+        <div class="floating-heart"></div>
+        <div class="floating-heart"></div>
+        <div class="floating-heart"></div>
+    </div>
+
+    <!-- Character Selection Screen -->
+    <div id="character-selection" class="screen active">
+        <div class="selection-container">
+            <h1 class="title">رواية الحب والغموض التفاعلية</h1>
+            <p class="subtitle">ابدأ رحلة مليئة بالتشويق والمغامرة والأسرار المظلمة</p>
+            
+            <div class="characters-grid">
+                <div class="character-card" data-character="منار">
+                    <div class="character-image">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>منار</h3>
+                    <p>الفتاة الغامضة التي تخفي أسراراً مظلمة</p>
+                </div>
+                
+                <div class="character-card" data-character="محمد">
+                    <div class="character-image">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>محمد</h3>
+                    <p>الشاب المحب الذي سيواجه اختبار الحب الحقيقي</p>
+                </div>
+            </div>
+            
+            <button id="start-story" class="start-btn" style="display: none;">
+                <i class="fas fa-play"></i>
+                ابدأ القصة
+            </button>
+        </div>
+    </div>
+
+    <!-- Story Screen -->
+    <div id="story-screen" class="screen">
+        <div class="story-container">
+            <!-- Story Image -->
+            <div class="story-image-container">
+                <img id="story-image" src="" alt="مشهد من القصة">
+                <div class="image-overlay"></div>
+            </div>
+            
+            <!-- Story Text -->
+            <div class="story-text-container">
+                <div class="character-name" id="speaker-name"></div>
+                <div class="story-text" id="story-text"></div>
+                
+                <!-- Choices -->
+                <div class="choices-container" id="choices-container">
+                    <!-- Choices will be dynamically added here -->
+                </div>
+                
+                <!-- Continue Button -->
+                <button id="continue-btn" class="continue-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    متابعة
+                </button>
+            </div>
+            
+            <!-- Navigation -->
+            <div class="story-navigation">
+                <button id="back-btn" class="nav-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    العودة
+                </button>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                
+                <button id="menu-btn" class="nav-btn">
+                    <i class="fas fa-home"></i>
+                    القائمة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Button -->
+    <a href="index.html" class="home-link">
+        <i class="fas fa-home"></i>
+        العودة للصفحة الرئيسية
+    </a>
+
+    <script src="visual-novel.js"></script>
+</body>
+</html>

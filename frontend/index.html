@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رحلة حبنا</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+
+    <!-- User Selection Modal -->
+    <div id="user-selection-modal" class="user-modal-overlay">
+        <div class="user-modal-content">
+            <h2>من يزور الموقع اليوم؟</h2>
+            <p>الرجاء اختيار اسمك للمتابعة</p>
+            <div class="user-selection-buttons">
+                <button id="select-mohamed" class="user-select-btn">محمد</button>
+                <button id="select-manar" class="user-select-btn">منار</button>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="petals-canvas"></canvas>
+    <div class="floating-hearts"></div>
+
+    <div class="container">
+        <header data-aos="fade-down">
+            <div class="name-animation">
+                <h1>منارتي</h1>
+                <div class="love-decoration">
+                    <span class="love-text">زوجتي</span>
+                </div>
+            </div>
+            <p class="subtitle">رحلة حبنا الجميلة</p>
+            
+            <!-- Interactive Story Button -->
+            <div class="story-access" data-aos="fade-up">
+                <a href="visual-novel.html" class="story-btn">
+                    <i class="fas fa-book-open"></i>
+                    <span>ادخل إلى رواية حبنا التفاعلية</span>
+                    <i class="fas fa-heart"></i>
+                </a>
+            </div>
+        </header>
+
+        <div class="memories-container">
+            <!-- Memory Card 1 -->
+            <div class="memory-card" data-aos="fade-up" onclick="showMemoryDetails(1)">
+                <div class="memory-image"><img src="memories/1.png" alt="ذكرى"></div>
+                <div class="memory-content"><h3>أول مرة قولتيلي بحبك</h3><p>مش عارف ابتدي منين، كنا متخانقين وقتها...</p><div class="memory-date">12 فبراير 2025</div></div>
+            </div>
+            <!-- Memory Card 2 -->
+            <div class="memory-card" data-aos="fade-up" onclick="showMemoryDetails(2)">
+                <div class="memory-image"><img src="memories/2.png" alt="ذكرى"></div>
+                <div class="memory-content"><h3>مفيش حاجه تقدر تقربلك</h3><p>كانت أول مرة تحسسيني إني الراجل بتاعك فعلاً...</p><div class="memory-date">10 فبراير 2025</div></div>
+            </div>
+            <!-- Memory Card 3 -->
+            <div class="memory-card" data-aos="fade-up" onclick="showMemoryDetails(3)">
+                <div class="memory-image"><img src="memories/3.png" alt="ذكرى"></div>
+                <div class="memory-content"><h3>لما وهبتيلي النور</h3><p>مقدرش أوصف أنا حسيت بإيه وقتها...</p><div class="memory-date">24 مارس 2025</div></div>
+            </div>
+            <!-- Memory Card 4 -->
+            <div class="memory-card" data-aos="fade-up" onclick="showMemoryDetails(4)">
+                <div class="memory-image"><img src="memories/4.png" alt="ذكرى"></div>
+                <div class="memory-content"><h3>اول مكالمه بيننا</h3><p>كانت أول مرة نشوف فيلم مع بعض...</p><div class="memory-date">4 فبراير 2025</div></div>
+            </div>
+            <!-- Memory Card 5 -->
+            <div class="memory-card" data-aos="fade-up" onclick="showMemoryDetails(5)">
+                <div class="memory-image"><img src="memories/5.png" alt="ذكرى"></div>
+                <div class="memory-content"><h3>انا مش توتو</h3><p>فاكره لما كنتي بتوريني فيديوهات أكل غريبة...</p><div class="memory-date">1 مارس 2025</div></div>
+            </div>
+            <!-- Memory Card 6 -->
+            <div class="memory-card special-memory" data-aos="fade-up" onclick="showMemoryDetails(6)">
+                <div class="memory-image"><img src="memories/6.png" alt="ذكرى"></div>
+                <div class="memory-content"><h3>أنا ديمًا معك <i class='fas fa-lock'></i></h3><p class="mysterious-desc">هناك رسالة خاصة تنتظرك هنا...</p><div class="memory-date">1 مايو 2025</div></div>
+            </div>
+        </div>
+
+        <!-- Memory Details Modal -->
+        <div id="memoryModal" class="memory-modal">
+            <div class="memory-modal-content">
+                <span class="close-modal" onclick="closeMemoryModal()">&times;</span>
+                <div class="memory-modal-header"><h2 id="modalTitle"></h2><div class="memory-modal-date" id="modalDate"></div></div>
+                <div class="memory-modal-body">
+                    <div class="memory-modal-image"><img id="modalImage" src="" alt=""></div>
+                    <div class="memory-modal-description" id="modalDescription"></div>
+                </div>
+                <div class="memory-modal-navigation">
+                    <button class="nav-btn prev-btn" onclick="navigateMemory('prev')"><i class="fas fa-chevron-right"></i> السابقة</button>
+                    <button class="nav-btn next-btn" onclick="navigateMemory('next')">التالية <i class="fas fa-chevron-left"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diary Section -->
+        <div class="diary-section" data-aos="fade-up">
+            <h2>مذكراتنا</h2>
+            <div class="diary-entry">
+                <textarea id="diaryText" placeholder="اكتبي ذكرياتك هنا..."></textarea>
+                <button class="save-btn" onclick="saveDiaryEntry()"><i class="fas fa-heart"></i> حفظ</button>
+            </div>
+            <button class="show-entries-btn" onclick="toggleEntries()"><i class="fas fa-book-open"></i> عرض مذكراتنا</button>
+            <div class="saved-entries" id="savedEntries" style="display: none;">
+                <h3>مذكراتنا المحفوظة</h3>
+                <div id="entriesList" class="entries-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Chat Button -->
+    <a href="chat.html" id="chat-toggle-link" class="hidden">
+        <div class="chat-toggle">
+            <i class="fas fa-comments"></i>
+        </div>
+    </a>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <audio id="backgroundMusic" src="memories/music.mp3" loop></audio>
+        <button id="musicToggle" class="music-toggle-btn"><i class="fas fa-play"></i></button>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
