@@ -21,8 +21,20 @@ const io = new Server(server, {
 });
 const PORT = process.env.PORT || 4000;
 
+// Configure CORS
+const corsOptions = {
+    origin: [
+        'https://manary.netlify.app',  // Your Netlify domain
+        'http://localhost:3000',       // For local development
+        'http://localhost:4000'        // For local backend
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Backend is API only; no static files to serve
