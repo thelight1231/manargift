@@ -22,19 +22,41 @@ const io = new Server(server, {
 const PORT = process.env.PORT || 4000;
 
 // Configure CORS
-const corsOptions = {
-    origin: [
-        'https://manary.netlify.app',  // Your Netlify domain
-        'http://localhost:3000',       // For local development
-        'http://localhost:4000'        // For local backend
-    ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-};
+const allowedOrigins = [
+    'https://manary.netlify.app',  // Your Netlify domain
+    'http://localhost:3000',       // For local development
+    'http://localhost:4000'        // For local backend
+];
 
-// Middleware
-app.use(cors(corsOptions));
+// Enable CORS for all routes
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.header('Access-Control-Allow-Origin', origin);
+    }
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', true);
+    
+    // Handle preflight requests
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+    
+    next();
+});
+
+// Regular CORS middleware for non-OPTIONS requests
+app.use(cors({
+    origin: function(origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true
+}));
 app.use(express.json());
 
 // Backend is API only; no static files to serve
